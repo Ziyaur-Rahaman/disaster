@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playwrite+TZ+Guides&display=swap');
+
+.dancing-script{
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight:500px;
+  font-style: normal;
+}
+section {
+  padding-top: 70px; /* adjust this value to match the height of your navbar */
+}
+
+.img{
+  height: 100vh;
+  width: 100%;
+  padding-top:70px;
+    
+    
+}
+/* remember this */
+@media (max-width:540px) {
+  .img{
+    height:40vh;
+    width: 100%;
+    padding-top:60px;
+    
+  }
+}
+.hr{
+  width:40%;
+}
+.mar{
+  margin-left: auto;
+  margin-right: auto;
+}
+.para{
+  font-size: 24px;
+}
+.img2{
+  margin-top: 10%;
+  margin-bottom: 40%;
+  width: 100%;
+}
+#about{
+  margin: 10px;
+  margin-bottom: 70px;
+}
+.but{
+  width: 150px;
+  padding: 5px;
+  margin-left: 10px;
+}
+.bgnav{
+  background-color: rgb(230, 235, 247);
+}
+.card{
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+
+}
+.icon{
+  width:40px;
+  color: aliceblue;
+  background-color: blue;
+  margin: 10px;
+  padding: 10px;
+  border-radius:10px;
+}
+.middle{
+  background-color: blue;
+  color: aliceblue;
+}
+.middle div{
+  background-color: aliceblue;
+  color: blue;
+}
+.middle button{
+  background-color: aliceblue;
+  color: blue;
+}
+.img3{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: solid;
+  border-width:2px;
+  border-color: blue;
+  padding: 6px;
+}
+.card2{
+  border: solid;
+  border-color: bisque;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  height: 540px;
+}
+.team{
+  margin-bottom: 160px;
+}
+.down{
+  margin-top: 20px;
+  margin-bottom: 200px;
+  width: 100%;
+
+}

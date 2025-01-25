@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS (Animate on Scroll) CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f4f9ff;
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(45deg, #007bff, #6610f2);
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .welcome-message {
+            color: white;
+            font-size: 1.2rem;
+        }
+        .logout-btn {
+            background-color: #ff4b5c;
+            border: none;
+            color: white;
+        }
+        .logout-btn:hover {
+            background-color: #ff2a3c;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 100%; /* Set width to 100% of the column */
+            max-width: 350px; /* Limit maximum width of cards */
+            margin: auto; /* Center the card */
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            width: 100%; /* Make images fit the card */
+            height: 220px; /* Moderate image height */
+            object-fit: cover; /* Ensure the image maintains aspect ratio */
+        }
+        .card-body {
+            padding: 1.25rem; /* Moderate padding inside the card */
+        }
+        .card-title {
+            font-size: 1.3rem; /* Slightly larger title font size */
+        }
+        .card-text {
+            font-size: 1rem; /* Medium text size */
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Disaster Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="nav-link welcome-message">Welcome, {{ username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn logout-btn" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="container mt-5">
+        <h1 class="section-title" data-aos="fade-up">Your Dashboard</h1>
+        <div class="row g-4">
+            <!-- Disaster Prediction -->
+            <div class="col-md-4" data-aos="fade-right">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/u1.png') }}"  class="card-img-top" alt="Disaster Prediction">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Disaster Prediction</h5>
+                        <p class="card-text">Real-time predictions for earthquakes and floods.</p>
+                        <a href="{{ url_for('disaster_prediction') }}" class="btn btn-primary">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Prevention Steps -->
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/u2.png') }}"  class="card-img-top" alt="Prevention Steps">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Prevention Steps</h5>
+                        <p class="card-text">Learn safety measures to prevent disasters.</p>
+                        <a href="" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- About Disasters -->
+            <div class="col-md-4" data-aos="fade-left">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/u3.jpeg') }}"  class="card-img-top" alt="About Disasters">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">About Disasters</h5>
+                        <p class="card-text">Understand natural disasters and their impact.</p>
+                        <a href="" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4 mt-4">
+            <!-- Victim Assistance -->
+            <div class="col-md-6" data-aos="fade-right">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/u4.png') }}"  class="card-img-top" alt="Victim Assistance">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Victim Assistance</h5>
+                        <p class="card-text">Resources and support for disaster victims.</p>
+                        <a href="" class="btn btn-primary">Get Help</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Helpline Numbers -->
+            <div class="col-md-6" data-aos="fade-left">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/u5.png') }}"  class="card-img-top" alt="Helpline Numbers">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Helpline Numbers</h5>
+                        <p class="card-text">Find emergency contact numbers for assistance.</p>
+                        <a href="" class="btn btn-primary">View Numbers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Disaster Management System | All Rights Reserved</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS (Animate on Scroll) JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+</body>
+</html>
