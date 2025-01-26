@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            border-radius: 1rem;
+        }
+        .btn-success, .btn-secondary {
+            border-radius: 2rem;
+        }
+        #result {
+            display: none;
+        }
+        .alert {
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-lg text-center p-4">
+            <h3 class="card-title text-primary">Flood Prediction</h3>
+            <p class="card-text text-secondary">Enter a city name to check flood likelihood and see weather details.</p>
+            <form id="predictionForm" class="mt-3">
+                <div class="mb-3">
+                    <input type="text" id="city" name="city" class="form-control" placeholder="Enter city name" required>
+                </div>
+                <button type="submit" class="btn btn-success px-4">Submit</button>
+                <a href="{{ url_for('disaster_prediction') }}" class="btn btn-secondary px-4">Back</a>
+            </form>
+            <div id="result" class="mt-4">
+                <h4>City: <span id="cityName"></span></h4>
+                <h4>Prediction: <span id="predictionResult"></span></h4>
+                <h5 class="mt-3">Weather Details:</h5>
+                <ul class="list-unstyled">
+                    <li>Temperature: <span id="tempC"></span> °C</li>
+                    <li>Humidity: <span id="humidity"></span>%</li>
+                    <li>Precipitation: <span id="precipMm"></span> mm</li>
+                    <li>Wind Speed: <span id="windKph"></span> kph</li>
+                    <li>Pressure: <span id="pressureMb"></span> mb</li>
+                    <li>Condition: <span id="condition"></span></li>
+                </ul>
+            </div>
+            <div id="error" class="mt-3 alert alert-danger" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $("#predictionForm").on("submit", function(event) {
+            event.preventDefault();
+            const city = $("#city").val();
+            $("#city").val(""); // Clear the input field
+            $("#result").hide();
+            $("#error").hide();
+
+            $.post("/predict", { city: city }, function(data) {
+                $("#result").show();
+                $("#cityName").text(data.city_name);
+                $("#predictionResult").text(data.result);
+                $("#tempC").text(data.temp_c);
+                $("#humidity").text(data.humidity);
+                $("#precipMm").text(data.precip_mm);
+                $("#windKph").text(data.wind_kph);
+                $("#pressureMb").text(data.pressure_mb);
+                $("#condition").text(data.condition);
+            }).fail(function(err) {
+                $("#error").text(err.responseJSON.error).show();
+            });
+        });
+    </script>
+</body>
+</html>
